@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import CustomCursor from "@/components/CustomCursor";
+import ForegroundLeaves from "@/components/ForegroundLeaves";
+import Navbar from "@/components/Navbar";
+import { CursorContextProvider } from "@/context/CursorContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Eco Raja Ampat | Green Campaign",
-  description: "Official conservation campaign for Raja Ampat's biodiversity.",
+  title: "Raja Ampat | The Crown Jewel",
+  description: "An immersive journey into the heart of marine biodiversity.",
 };
 
 export default function RootLayout({
@@ -25,22 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* FontAwesome CDN untuk icon (daun, user, dll) */}
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* User null untuk kondisi belum login */}
-        <Header user={null} />
-        {children}
+      <body className={`${poppins.variable} antialiased bg-background overflow-hidden h-screen`}>
+        <CursorContextProvider>
+            <CustomCursor />
+            <ForegroundLeaves />
+            <Navbar />
+            <main className="relative z-10 h-full">
+                {children}
+            </main>
+        </CursorContextProvider>
       </body>
     </html>
   );

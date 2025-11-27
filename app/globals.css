@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* RAJA AMPAT ORGANIC PALETTE - V2 */
+  --background: #050a05;       /* Deepest Jungle/Ocean Black */
+  --foreground: #e2e8f0;       /* Soft Mist White */
+  --accent: #fbbf24;           /* Golden Sun / Yellow Coral */
+  --secondary: #10b981;        /* Emerald Green */
+  --earth: #92400e;            /* Red Clay / Earth */
+  --deep-sea: #064e3b;         /* Deep Emerald Water */
+  --surface: #111827;          /* Dark Rock */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-earth: var(--earth);
+  --color-deep-sea: var(--deep-sea);
+  --color-surface: var(--surface);
+  --font-poppins: var(--font-poppins);
+  
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-wave: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  --animate-wave-slow: wave 15s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes wave {
+  0% { margin-left: 0; }
+  100% { margin-left: -100%; }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* Cinematic Typography */
+.text-cinematic {
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+}
+
+/* Ultra Typography for Hero */
+.text-ultra {
+    font-size: clamp(3rem, 10vw, 12rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--deep-sea);
+  border-radius: 3px;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--background);
 }
